@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/*@media (max-width: 614px){*/
+
+    body{
+        font-family: 'Roboto', sans-serif;
+    }
+
+    *{
+        box-sizing: border-box;
+    }
+    
+    .content{
+        
+    }
+
+    .top{
+        width: 375px;
+        height: 80px;
+        box-shadow: 0px 4px 6px 0px #0000000D;
+    }
+
+    .iconContainer{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .iconContainer img{
+        width: 70px;
+        height: 53px;
+    }
+
+    .iconContainer ion-icon{
+        width: 43px;
+        height: 31px;
+    }
