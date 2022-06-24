@@ -4,57 +4,70 @@
 
 //status: https://mock-api.driven.com.br/api/v6/uol/status
 
-let menssagemEnviada = []
-
-//user.push(mensaggem)
-
-let usuario = [{
-    name: "",
-}]
+let menssagem = []
 
 buscarMensagem()
+
 function buscarMensagem(){
 
     let promessa =  axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");   
 
-   promessa.then(alerta => {
-    //console.log(alerta)
-    //console.log(alerta.data)
-    menssagem = alerta.data
-    renderizarMensagem()
-    })
+   promessa.then(deuCerto);
 
     promessa.catch(error => {
-        console.log(error)
+        alert(error)
     })
 
+}
+
+function atualizarChat(){
+    let promessa =  axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");   
+
+    promessa.then(deuCerto);
+    
+    
 
 }
+
+function deuCerto(resposta){
+    menssagem = resposta.data;
+    renderizarMensagem()
+}
+setInterval(buscarMensagem, 3000) //mudar para 3000
 
 function renderizarMensagem(){
 
     let chat = document.querySelector('.chat')
+    
+    
+        chat.innerHTML = ""
+    
 
         for (let i = 0; i < menssagem.length; i++){
 
             if (menssagem[i].type === "status"){
                 
                 chat.innerHTML += `<div class="user logIn"> <p> <i>(${menssagem[i].time})</i> <strong>${menssagem[i].from}</strong> ${menssagem[i].text}</p> </div>`
-
+                
             }
             else if (menssagem[i].to != "Todos") {
             
                 chat.innerHTML += `<div class="user pvt"> <p><i>(${menssagem[i].time})</i> <strong>${menssagem[i].from}</strong> reservadamente para <strong>${menssagem[i].to}</strong>: ${menssagem[i].text}</p> </div>`
-
+                
             } else {
-                chat.innerHTML += `<div class="user public"> <p>(${menssagem[i].time}) ${menssagem[i].from} para ${menssagem[i].to}: ${menssagem[i].text}</p> </div>`
+                chat.innerHTML += `<div class="user public"> <p><i>(${menssagem[i].time})</i> <strong>${menssagem[i].from}</strong> para <strong>${menssagem[i].to}</strong>: ${menssagem[i].text}</p> </div>`
+                
             }
             
-            
-
         }
-
+        return    //pra não acumular mensagem
 
 }
+scrollar()
 
-//{from: 'aa', to: 'Todos', text: 'entra na sala...', type: 'status', time: '05:35:02'}
+function scrollar(){
+    let ultMsg = document.querySelector(".chat > div:last-child");
+    ultMsg.scrollIntoView();
+}
+
+
