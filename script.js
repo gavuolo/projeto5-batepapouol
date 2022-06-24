@@ -1,11 +1,8 @@
-//linkar o axios
-//fazer a mensagem ser enviada para o axios
-// capturar os textos enviados do axios e transferir para as divs do chat
-// input.inerHTML.value para pegasr o que foi digitado no input
-
 //mensagem: https://mock-api.driven.com.br/api/v6/uol/messages
 
 //participante: https://mock-api.driven.com.br/api/v6/uol/participants 
+
+//status: https://mock-api.driven.com.br/api/v6/uol/status
 
 let menssagemEnviada = []
 
@@ -18,12 +15,11 @@ let usuario = [{
 buscarMensagem()
 function buscarMensagem(){
 
-    let promessa =  axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
-        
+    let promessa =  axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");   
 
    promessa.then(alerta => {
-    console.log(alerta)
-    console.log(alerta.data)
+    //console.log(alerta)
+    //console.log(alerta.data)
     menssagem = alerta.data
     renderizarMensagem()
     })
@@ -38,10 +34,23 @@ function buscarMensagem(){
 function renderizarMensagem(){
 
     let chat = document.querySelector('.chat')
-      
-        for(let i = 0; i < menssagem.length; i++){
+
+        for (let i = 0; i < menssagem.length; i++){
+
+            if (menssagem[i].type === "status"){
+                
+                chat.innerHTML += `<div class="user logIn"> <p> <i>(${menssagem[i].time})</i> <strong>${menssagem[i].from}</strong> ${menssagem[i].text}</p> </div>`
+
+            }
+            else if (menssagem[i].to != "Todos") {
             
-            chat.innerHTML += `<div class="user"> (${menssagem[i].time}) ${menssagem[i].from} para ${menssagem[i].to}: ${menssagem[i].text} </div>`
+                chat.innerHTML += `<div class="user pvt"> <p><i>(${menssagem[i].time})</i> <strong>${menssagem[i].from}</strong> reservadamente para <strong>${menssagem[i].to}</strong>: ${menssagem[i].text}</p> </div>`
+
+            } else {
+                chat.innerHTML += `<div class="user public"> <p>(${menssagem[i].time}) ${menssagem[i].from} para ${menssagem[i].to}: ${menssagem[i].text}</p> </div>`
+            }
+            
+            
 
         }
 

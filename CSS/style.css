@@ -69,19 +69,20 @@
 
     .chat{
         margin-top: 110px;
-        height: 900px;
+        height: auto;
         width: 100%;        
     }
 
     .user{
         display: flex;
         flex-direction: column;
-        text-align: center;
+        justify-content: center;
         width: 100%;
         height: 40px;
         margin-bottom: 5px;
         border-radius: 2px;
     }
+
     
     .logIn, .logOff{
         background-color: #DCDCDC;
@@ -94,4 +95,12 @@
 
     .public{
         background-color: #FFFFFF;
+    }
+
+    strong{
+        font-weight: 700;
+    }
+    i{
+        color: #AAAAAA;
+
     }
