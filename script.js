@@ -1,9 +1,3 @@
-//mensagem: https://mock-api.driven.com.br/api/v6/uol/messages
-
-//participante: https://mock-api.driven.com.br/api/v6/uol/participants 
-
-//status: https://mock-api.driven.com.br/api/v6/uol/status
-
 let menssagem = []
 let nome
 let enviarTexto;
@@ -37,7 +31,6 @@ renderizarMensagem()
 //--------
 function online(participante){
     participante.data += nome
-    
 }
 
 //------
@@ -54,14 +47,16 @@ function pegarMensagem(){
     }
 
     let promessa = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", enviarTexto)
-    promessa.then(console.log("enviou"))
+    promessa.then(enviou =>{
+        console.log("enviou");
+        document.querySelector(".box-input input").value = ""
+    })
     promessa.catch(console.log("não"))
 
 }
 
 
 buscarMensagem()
-
 function buscarMensagem(){
 
     let promessa =  axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");   
@@ -97,5 +92,5 @@ function renderizarMensagem(){
             }
 
         }
-        return    //pra não acumular mensagem
+        return  
 }

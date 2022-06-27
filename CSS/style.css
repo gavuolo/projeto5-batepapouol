@@ -1,16 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-/*@media (max-width: 614px){*/
 
     body{
         font-family: 'Roboto', sans-serif;
         background-color: #F3F3F3;
     }
-
-    /*{
-        box-sizing: border-box;
-    }*/
-    
     
     /*BOX TOPO*/
     .top{
@@ -103,5 +97,4 @@
     }
     i{
         color: #AAAAAA;
-
     }
